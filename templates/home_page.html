@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System - Home</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://static.vecteezy.com/system/resources/thumbnails/035/565/791/small_2x/ai-generated-empty-stage-with-blue-lighting-spotlight-effects-and-dark-atmosphere-ideal-for-concert-and-event-backgrounds-photo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        .events {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .event-tile {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .event-tile:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-tile h2 {
+            font-size: 1.5rem;
+        }
+
+        .event-tile p {
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .event-tile.conference {
+            background-color: #1E90FF;
+        }
+
+        .event-tile.workshop {
+            background-color: #32CD32;
+        }
+
+        .event-tile.webinar {
+            background-color: #FF6347;
+        }
+
+        .event-tile.concert {
+            background-color: #FFD700;
+        }
+
+        .event-tile.corporate {
+            background-color: #8A2BE2;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #007BFF;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home_page' %}">Home</a></li>
+            <li><a href="{% url 'admin_login' %}">Admin Login</a></li>
+            <li><a href="{% url 'speaker_registration' %}">Speaker Registration</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Event Management System</h1>
+            <p>Welcome to our platform!</p>
+        </header>
+        <section class="events">
+            <a href="{% url 'events_by_type' 'Conference' %}" class="event-tile conference">
+                <h2>Conference</h2>
+                <p>Conferences for knowledge sharing and networking.</p>
+            </a>
+            <a href="{% url 'events_by_type' 'Workshop' %}" class="event-tile workshop">
+                <h2>Workshop</h2>
+                <p>Hands-on workshops for practical learning.</p>
+            </a>
+            <a href="{% url 'events_by_type' 'Webinar' %}" class="event-tile webinar">
+                <h2>Webinar</h2>
+                <p>Online webinars to learn from experts.</p>
+            </a>
+            <a href="{% url 'events_by_type' 'Concert' %}" class="event-tile concert">
+                <h2>Concert</h2>
+                <p>Live concerts and performances.</p>
+            </a>
+            <a href="{% url 'events_by_type' 'Corporate' %}" class="event-tile corporate">
+                <h2>Corporate Event</h2>
+                <p>Corporate events for business engagements.</p>
+            </a>
+        </section>
+    </div>
+</body>
+
+</html>

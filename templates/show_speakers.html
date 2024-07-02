@@ -1,0 +1,125 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Speaker Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0; /* Remove default margin */
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .speaker-photo {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .bio {
+            margin-bottom: 20px;
+        }
+        .documents a {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Speaker Details</h1>
+        <div>
+            <h2>{{ speaker.name }}</h2>
+            <div class="bio">
+                <p>{{ speaker.bio }}</p>
+            </div>
+            {% if speaker.photo %}
+                <img src="{{ speaker.photo.url }}" alt="Speaker Photo" class="speaker-photo">
+            {% endif %}
+            {% if speaker.documents %}
+                <div class="documents">
+                    <h3>Uploaded Documents:</h3>
+                    <ul>
+                        <li><a href="{{ speaker.documents.url }}" target="_blank">{{ speaker.documents.name }}</a></li>
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+        <a href="{% url 'home_page' %}">Back to Home</a>
+    </div>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Speaker Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .speaker-photo {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .bio {
+            margin-bottom: 20px;
+        }
+        .documents a {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>List of Speakers</h1>
+        <ul>speakers
+            {% for speaker in speakers %}
+                <li>
+                    <h2>{{ speaker.name }}</h2>
+                    <div class="bio">
+                        <p>{{ speaker.bio }}</p>
+                    </div>
+                    {% if speaker.photo %}
+                        <img src="{{ speaker.photo.url }}" alt="Speaker Photo" class="speaker-photo">
+                    {% endif %}
+                    {% if speaker.documents %}
+                        <div class="documents">
+                            <h3>Uploaded Documents:</h3>
+                            <ul>
+                                <li><a href="{{ speaker.documents.url }}" target="_blank">{{ speaker.documents.name }}</a></li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'home_page' %}">Back to Home</a>
+    </div>
+</body>
+</html>

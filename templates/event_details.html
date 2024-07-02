@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3JtNDIyLTA3Ni14LmpwZw.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #e0f7fa;
+            /* Light blue background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .ticket-selection {
+            margin-top: 20px;
+        }
+
+        .ticket-selection label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .ticket-selection input,
+        .ticket-selection select {
+            width: calc(100% - 22px);
+            /* Adjusted width */
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .register-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .register-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Event Details</h1>
+        <p><strong>Name:</strong> {{ event.name }}</p>
+        <p><strong>Type:</strong> {{ event.event_type }}</p>
+        <p><strong>Start Date & Time:</strong> {{ event.start_date_time }}</p>
+        <p><strong>End Date & Time:</strong> {{ event.end_date_time }}</p>
+        <p><strong>Speaker:</strong> {{ event.speaker.name }}</p>
+        <p><strong>Sponsor:</strong> {{ event.sponsor.name }}</p>
+        <p><strong>Normal Ticket Price:</strong> {{ event.normal_ticket_price }}</p>
+        <p><strong>VIP Ticket Price:</strong> {{ event.vip_ticket_price }}</p>
+        <p>
+            <select name="ticket_type" id="ticket_type">
+                <option value="normal">Normal - {{ event.normal_ticket_price }}</option>
+                <option value="vip">VIP - {{ event.vip_ticket_price }}</option>
+            </select>
+        </p>
+
+        <form action="{% url 'event_details' event.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>
+                <label for="username">Name:</label>
+                <input type="text" id="username" name="name" required>
+            </p>
+
+            <p>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </p>
+
+            <button type="submit" class="register-button">Register</button>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System - Events</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://cdn2.vectorstock.com/i/1000x1000/94/66/polygon-light-blue-gradient-background-vector-23969466.jpg') no-repeat center center fixed;
+            background-size: cover;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #e0f7fa; /* Light blue background color */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .events-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+
+        .events-table th,
+        .events-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .events-table th {
+            background-color: #007BFF;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .events-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .events-table tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        .events-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .events-table td.name {
+            color: #007BFF;
+        }
+
+        .events-table td.type {
+            color: #28a745;
+        }
+
+        .events-table td.start,
+        .events-table td.end {
+            color: #ffc107;
+        }
+
+        .events-table td.tickets {
+            color: #dc3545;
+        }
+
+        .event-link {
+            display: inline-block;
+            padding: 8px 12px;
+            color: #fff;
+            background-color: #007BFF;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .event-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Event Management System</h1>
+            <p>Event Type: {{ event_type }}</p>
+        </header>
+        <table class="events-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Start Date & Time</th>
+                    <th>End Date & Time</th>
+                    <th>Total Tickets</th>
+                    <th>Available Tickets</th>
+                    <th>Speaker</th>
+                    <th>Sponsor</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                <tr>
+                    <td class="name">{{ event.name }}</td>
+                    <td class="type">{{ event.event_type }}</td>
+                    <td class="start">{{ event.start_date_time }}</td>
+                    <td class="end">{{ event.end_date_time }}</td>
+                    <td class="tickets">{{ event.total_tickets }}</td>
+                    <td class="tickets">{{ event.available_normal_tickets }}</td>
+                    <td>{{ event.speaker.name }}</td>
+                    <td>{{ event.sponsor.name }}</td>
+                    <td><a class="event-link" href="{% url 'event_details' event.id %}">View Details</a></td>
+                </tr>
+                {% endfor %}                
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

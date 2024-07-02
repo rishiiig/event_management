@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsorship Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0; /* Remove default margin */
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            max-width: 600px; /* Increased max-width for better alignment */
+            background-color: rgba(255, 255, 255, 0.9); /* Transparent white background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            background-image: url('your-background-image-url.jpg'); /* Add your background image URL here */
+            background-size: cover;
+            background-position: center;
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select { /* Adjusting both input, textarea, and select styles */
+            width: calc(100% - 22px); /* Adjusted width to align with padding and borders */
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding is included in the width calculation */
+        }
+        .form-group textarea {
+            height: 120px; /* Increased height for textarea */
+            resize: vertical; /* Allow vertical resizing */
+        }
+        .form-group input[type="file"] {
+            margin-top: 5px; /* Added margin for spacing */
+        }
+        .form-group input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        /* Styling for the table */
+        .sponsorship-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .sponsorship-table th, .sponsorship-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        .sponsorship-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            padding: 12px;
+        }
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background-color: #da190b;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a class="nav-link" href="{% url 'home_page' %}">Home</a>
+    </div>
+    <div class="container">
+        <h2>Sponsorship Registration</h2>
+        <form action="submit_registration.html" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="packageName">Package Name:</label>
+                <input type="text" id="packageName" name="packageName" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+            </div>
+            <div class="form-group">
+                <label for="logo">Upload Logo:</label>
+                <input type="file" id="logo" name="logo">
+            </div>
+            <div class="form-group">
+                <label for="availability">Availability:</label>
+                <select id="availability" name="availability" required>
+                    <option value="">Select availability</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary btn-block">
+            </div>
+        </form>
+    </div>
+    <!-- New container with table -->
+    <div class="container">
+        <h2>Current Sponsorship Packages</h2>
+        <table class="sponsorship-table">
+            <thead>
+                <tr>
+                    <th>Package Name</th>
+                    <th>Price</th>
+                    <th>Availability</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example row with delete button -->
+                <tr>
+                    <td>Example Package</td>
+                    <td>$1000</td>
+                    <td>High</td>
+                    <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function deleteRow(button) {
+            // Get the row to be deleted
+            var row = button.parentNode.parentNode;
+            // Remove the row
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</body>
+</html>
